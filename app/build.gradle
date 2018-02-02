@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion build_version.target_sdk
+    buildToolsVersion build_version.build_tools
+
     defaultConfig {
         applicationId "com.jhfactory.sample"
-        minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion build_version.min_sdk
+        targetSdkVersion build_version.target_sdk
+        versionCode build_version.aospimagepick_code
+        versionName build_version.aospimagepick_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,23 +26,19 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.google.android.gms:play-services-auth:11.8.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    implementation 'com.squareup.okio:okio:1.13.0'
-    implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.jhfacotry:jhlogger:0.9.0'
     implementation project(':simple-okhttp-lib')
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation deps.support.appcompat
+    implementation deps.support.annotations
+    implementation deps.constraint_layout
+    implementation deps.gms.auth
+    implementation deps.okhttp3.runtime
+    implementation deps.okhttp3.logging_interceptor
+    implementation deps.okio
+    implementation deps.gson
+    implementation deps.jhlogger
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
 }
 
-repositories {
-    maven {
-        url 'https://maven.google.com'
-    }
-}
-
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
