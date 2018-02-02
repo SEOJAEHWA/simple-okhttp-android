@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion build_version.min_sdk
         targetSdkVersion build_version.target_sdk
-        versionCode build_version.aospimagepick_code
-        versionName build_version.aospimagepick_name
+        versionCode build_version.lib_code
+        versionName build_version.lib_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

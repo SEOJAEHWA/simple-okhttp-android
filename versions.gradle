@@ -66,7 +66,7 @@ deps.espresso = espresso
 
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
-deps.jhlogger = "com.jhfacotry:jhlogger:$versions.jhlogger"
+deps.jhlogger = "com.jhfactory:jhlogger:$versions.jhlogger"
 deps.android_gradle = "com.android.tools.build:gradle:$versions.android_gradle"
 deps.google_services = "com.google.gms:google-services:$versions.google_services"
 deps.maven_gradle = "com.github.dcendents:android-maven-gradle-plugin:$versions.maven_gradle"
@@ -76,6 +76,9 @@ ext.deps = deps
 static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
+    handler.maven {
+        url = "https://dl.bintray.com/seojaehwa/jhlogger-android"
+    }
 }
 
 ext.addRepos = this.&addRepos
