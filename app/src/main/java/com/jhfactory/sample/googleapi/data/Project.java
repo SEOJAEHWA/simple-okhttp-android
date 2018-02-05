@@ -35,15 +35,6 @@ public class Project implements Parcelable {
     private Map<String, String> labels;
     private ResourceId parent;
 
-    @Deprecated
-    public Project() {
-        projectNumber = "1234";
-        projectId = "1@3$";
-        lifecycleState = LifecycleState.LIFECYCLE_STATE_UNSPECIFIED;
-        name = "SEOJAEHWA";
-        createTime = "1983.06.16";
-    }
-
     private Project(Parcel in) {
         projectNumber = in.readString();
         projectId = in.readString();

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
-import com.jhfactory.jhlogger.Logger;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -28,7 +27,6 @@ public abstract class OkHttpCallback<TData, EData> implements IHttpCallback {
 
     @Override
     public void onResponse(int code, String respBody, Bundle bundle) {
-        Logger.json("resp. code: " + code, respBody);
         if (OkHttpUtils.isSuccessful(code)) {
             // FIXME: respBody 가 empty 일 경우
             TData data = new Gson().fromJson(respBody, getTypeOfGeneric(0));

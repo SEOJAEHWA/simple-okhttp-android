@@ -3,15 +3,12 @@ package com.jhfactory.api;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.jhfactory.jhlogger.Logger;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -96,19 +93,17 @@ public class OkHttpUtils {
         return builder.build();
     }
 
-    @SuppressWarnings("unused")
-    public static void showResponseHeaderInfo(Headers headers) {
+    /*public static void showResponseHeaderInfo(Headers headers) {
         for (int i = 0; i < headers.size(); i++) {
             String name = headers.name(i);
             String value = headers.value(i);
-            Logger.d("[Response:Header] " + name + ": " + value);
+            Log.d(TAG, "[Response:Header] " + name + ": " + value);
         }
-    }
+    }*/
 
-    @SuppressWarnings("unused")
-    public static void showResponseBodyInfo(int code, String message, String bodyStr) throws IOException {
-        Logger.d("[Response:CODE   ] " + code, false);
-        Logger.d("[Response:MESSAGE] " + message, false);
-        Logger.json("[Response:BODY   ] " + bodyStr);
-    }
+    /*public static void showResponseBodyInfo(int code, String message, String bodyStr) throws IOException {
+        Log.d(TAG, "[Response:CODE   ] " + code);
+        Log.d(TAG, "[Response:MESSAGE] " + message);
+        Log.d(TAG, "[Response:BODY   ] " + bodyStr);
+    }*/
 }

@@ -31,11 +31,11 @@ dependencies {
     implementation deps.support.annotations
     implementation deps.constraint_layout
     implementation deps.gms.auth
+//    implementation "com.google.android.gms:play-services-identity:11.8.0"
     implementation deps.okhttp3.runtime
     implementation deps.okhttp3.logging_interceptor
     implementation deps.okio
     implementation deps.gson
-    implementation deps.jhlogger
     testImplementation deps.junit
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.espresso.core

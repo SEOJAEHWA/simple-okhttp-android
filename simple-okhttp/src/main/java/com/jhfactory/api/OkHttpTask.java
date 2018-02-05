@@ -4,8 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import com.jhfactory.jhlogger.Logger;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -19,6 +18,8 @@ import okhttp3.ResponseBody;
 
 
 public abstract class OkHttpTask extends AsyncTask<Void, Void, Response> {
+
+    private static final String TAG = OkHttpTask.class.getSimpleName();
 
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer ";
@@ -62,7 +63,7 @@ public abstract class OkHttpTask extends AsyncTask<Void, Void, Response> {
             }
         }
         if (method == Method.GET && requestBody != null) {
-            Logger.w("method GET never have a request body. ignore request body.");
+            Log.w(TAG, "GET method do not need to have a request body. ignore it.");
             requestBody = null;
         }
         builder.url(url);
@@ -79,7 +80,7 @@ public abstract class OkHttpTask extends AsyncTask<Void, Void, Response> {
             final int code = response.code();
             final ResponseBody body = response.body();
             if (body == null) {
-                Logger.w("Response body is null.");
+                Log.w(TAG, "Response body is null.");
                 return;
             }
             final String bodyStr = body.string();

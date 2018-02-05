@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.google.gson.Gson;
 import com.jhfactory.api.OkHttpCallback;
 import com.jhfactory.api.OkHttpUtils;
-import com.jhfactory.jhlogger.Logger;
 import com.jhfactory.sample.Utils;
 import com.jhfactory.sample.googleapi.data.Error;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
 
 public abstract class GoogleAPICallback<TData> extends OkHttpCallback<TData, Error> {
 
-    protected Context context;
+    private Context context;
 
     protected GoogleAPICallback(Context context) {
         super();
@@ -25,7 +24,6 @@ public abstract class GoogleAPICallback<TData> extends OkHttpCallback<TData, Err
     @Override
     public void onResponse(int code, String respBody, Bundle bundle) {
         if (!OkHttpUtils.isSuccessful(code)) {
-            Logger.json("resp. code: " + code, respBody);
             Error error = new Gson().fromJson(respBody, Error.class);
             onResponseFailed(error, bundle);
             return;

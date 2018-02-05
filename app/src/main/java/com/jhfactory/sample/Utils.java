@@ -32,12 +32,7 @@ public class Utils {
             builder.setMessage(message);
         }
         builder.setCancelable(true);
-        builder.setPositiveButton(context.getString(R.string.common_confirm), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        builder.setPositiveButton(context.getString(R.string.common_confirm), (dialog, which) -> dialog.dismiss());
         builder.create();
         builder.show();
     }
