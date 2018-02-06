@@ -93,17 +93,38 @@ public class OkHttpUtils {
         return builder.build();
     }
 
-    /*public static void showResponseHeaderInfo(Headers headers) {
+    /*public static void showHeaderInfo(Headers headers) {
         for (int i = 0; i < headers.size(); i++) {
             String name = headers.name(i);
             String value = headers.value(i);
-            Log.d(TAG, "[Response:Header] " + name + ": " + value);
+            Log.d(TAG, "[Header] " + name + ": " + value);
         }
-    }*/
+    }
 
-    /*public static void showResponseBodyInfo(int code, String message, String bodyStr) throws IOException {
-        Log.d(TAG, "[Response:CODE   ] " + code);
-        Log.d(TAG, "[Response:MESSAGE] " + message);
-        Log.d(TAG, "[Response:BODY   ] " + bodyStr);
+    public static void showBodyInfo(int code, String message, String bodyStr) throws IOException {
+        Log.d(TAG, "[CODE   ] " + code);
+        Log.d(TAG, "[MESSAGE] " + message);
+        Log.d(TAG, "[BODY   ] " + getJsonLog(bodyStr));
+    }
+
+    private static String getJsonLog(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return "json content is Empty or Null.";
+        }
+        try {
+            json = json.trim();
+            if (json.startsWith("{")) {
+                JSONObject jsonObject = new JSONObject(json);
+                return jsonObject.toString(4);
+            }
+            if (json.startsWith("[")) {
+                JSONArray jsonArray = new JSONArray(json);
+                return jsonArray.toString(4);
+            }
+        }
+        catch (JSONException e) {
+            return e.getMessage() + "\n" + json;
+        }
+        return "";
     }*/
 }

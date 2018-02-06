@@ -15,6 +15,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 public abstract class OkHttpTask extends AsyncTask<Void, Void, Response> {
@@ -40,7 +41,13 @@ public abstract class OkHttpTask extends AsyncTask<Void, Void, Response> {
     protected OkHttpTask(@Nullable OkHttpClient client, Method method, HttpUrl url, RequestBody requestBody,
                          Bundle bundle, IHttpCallback callback) {
         if (client == null) {
-            client = new OkHttpClient();
+            OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+            if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                clientBuilder.addInterceptor(logging);
+            }
+            client = clientBuilder.build();
         }
         this.client = client;
         this.method = method;
